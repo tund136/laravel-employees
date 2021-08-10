@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-class LoginController extends Controller
-{
+class LoginController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -28,13 +27,15 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    protected $maxAttempts = 3; // Default is 5
+    protected $decayMinutes = 5; // Default is 1
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('guest')->except('logout');
     }
 }
